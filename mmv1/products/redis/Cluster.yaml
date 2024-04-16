@@ -150,13 +150,11 @@ properties:
           - :SINGLE_ZONE
         default_from_api: true
         immutable: true
-        required: false
       - !ruby/object:Api::Type::String
         name: zone
         description: |
           The zone for single zone Redis cluster.
         immutable: true
-        required: false
   - !ruby/object:Api::Type::Array
     name: 'pscConfigs'
     description: |
