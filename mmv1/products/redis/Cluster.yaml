@@ -50,6 +50,19 @@ parameters:
     default_from_api: true
 examples:
   - !ruby/object:Provider::Terraform::Examples
+    name: "redis_cluster_ha_single_zone"
+    primary_resource_id: "cluster-ha-single-zone"
+    vars:
+      cluster_name: "ha-cluster-single-zone"
+      policy_name: "mypolicy"
+      subnet_name: "mysubnet"
+      network_name: "mynetwork"
+      prevent_destroy: 'true'
+    test_vars_overrides:
+      prevent_destroy: 'false'
+    oics_vars_overrides:
+      prevent_destroy: 'false'
+  - !ruby/object:Provider::Terraform::Examples
     name: "redis_cluster_ha"
     primary_resource_id: "cluster-ha"
     vars:
@@ -123,6 +136,27 @@ properties:
     default_from_api: true
     immutable: true
     required: false
+  - !ruby/object:Api::Type::NestedObject
+    name: zoneDistributionConfig
+    description: Zone distribution config for the cluster.
+    properties:
+      - !ruby/object:Api::Type::Enum
+        name: mode
+        description: |
+          The mode for zone distribution for the Redis cluster.
+          If not provided, MULTI_ZONE will be used as default
+        values:
+          - :MULTI_ZONE
+          - :SINGLE_ZONE
+        default_from_api: true
+        immutable: true
+        required: false
+      - !ruby/object:Api::Type::String
+        name: zone
+        description: |
+          The zone for single zone Redis cluster.
+        immutable: true
+        required: false
   - !ruby/object:Api::Type::Array
     name: 'pscConfigs'
     description: |
