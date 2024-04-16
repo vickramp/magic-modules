@@ -138,12 +138,12 @@ properties:
     required: false
   - !ruby/object:Api::Type::NestedObject
     name: zoneDistributionConfig
-    description: Zone distribution config for the cluster.
+    description: Zone distribution config for Memorystore Redis cluster.
     properties:
       - !ruby/object:Api::Type::Enum
         name: mode
         description: |
-          The mode for zone distribution for the Redis cluster.
+          The mode for zone distribution for Memorystore Redis cluster.
           If not provided, MULTI_ZONE will be used as default
         values:
           - :MULTI_ZONE
@@ -153,7 +153,7 @@ properties:
       - !ruby/object:Api::Type::String
         name: zone
         description: |
-          The zone for single zone Redis cluster.
+          The zone for single zone Memorystore Redis cluster.
         immutable: true
   - !ruby/object:Api::Type::Array
     name: 'pscConfigs'
